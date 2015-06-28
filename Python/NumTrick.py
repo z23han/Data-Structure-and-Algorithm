@@ -105,6 +105,7 @@ class StrTrick(object):
         self.str_in = str_in
         self.lst = str_in.split()
 
+    # I feel this is more like greedy algorithm
     def shortest_dist_words(self, word1, word2):
         dist1_lst = []
         dist2_lst = []
@@ -124,6 +125,28 @@ class StrTrick(object):
         total_dist = dist_dict.keys()
         v = sorted(total_dist)[0]
         return [v, dist_dict[v]]
+
+    # this is like dynamic approach, tracking the postion and updating
+    def shortest_dist2(self, word1, word2):
+        pos = 0
+        pos_min = 10000
+        word1_pos = -pos_min
+        word2_pos = -pos_min
+        for i in range(len(self.lst)):
+            current_word = self.lst[i]
+            if current_word == word1:
+                word1_pos = pos
+                distance = word1_pos - word2_pos
+                if pos_min > distance:
+                    pos_min = distance
+            elif current_word == word2:
+                word2_pos = pos
+                distance = word2_pos - word1_pos
+                if pos_min > distance:
+                    pos_min = distance
+            pos += 1
+        return pos_min
+    
     
 
 
@@ -144,6 +167,6 @@ if __name__ == '__main__':
     word1 = 'inner'
     word2 = 'outer'
     str_trick = StrTrick(str_in)
-    print str_trick.shortest_dist_words(word1, word2)
+    print str_trick.shortest_dist2(word1, word2)
 
     
