@@ -30,9 +30,9 @@ class Solution:
         for i in xrange(len(matrix)):
             for j in xrange(len(matrix[0])):
                 if matrix[i][j] == 0:
-                    if i == 0:
-                        firstCol = 1
                     if j == 0:
+                        firstCol = 1
+                    if i == 0:
                         firstRow = 1
                     matrix[i][0] = 0
                     matrix[0][j] = 0
