@@ -35,9 +35,12 @@ class Solution(object):
                     return True
         return False
 
-    def word_break2(self, s, wordDict):
+    # DP
+    def wordBreak2(self, s, wordDict):
         t = []
-        t.append(True)
+        for i in xrange(len(s)+1):
+            t.append(False)
+        t[0] = True
 
         for i in xrange(len(s)):
             if not t[i]:
@@ -59,4 +62,4 @@ class Solution(object):
 if __name__ == '__main__':
     sol = Solution()
     myStr = 'programcreek'
-    print sol.wordBreak(myStr, dictionary)
+    print sol.wordBreak2(myStr, dictionary)
